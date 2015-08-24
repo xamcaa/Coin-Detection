@@ -1,4 +1,8 @@
 # Coin Detection Team
+## links
+http://docs.opencv.org/doc/tutorials/imgproc/imgtrans/hough_circle/hough_circle.html - Преобразование Хафа (код)
+http://robocraft.ru/blog/computervision/502.html - Преобразование Хафа (теория ??)
+
 
 # Техническое задание
 ### Подсчет объектов
