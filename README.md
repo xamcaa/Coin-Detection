@@ -4,6 +4,7 @@ http://docs.opencv.org/doc/tutorials/imgproc/imgtrans/hough_circle/hough_circle.
 
 http://robocraft.ru/blog/computervision/502.html - Преобразование Хафа (теория ??)
 
+http://robocraft.ru/blog/computervision/640.html - Здесь можно почитать о нахождении границы. Бинаризация cvInRangeS();
 
 # Техническое задание
 ### Подсчет объектов
