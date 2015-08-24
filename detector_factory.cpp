@@ -1,10 +1,11 @@
-#pragma once
+#include "detector.hpp"
 
-#include <opencv2/core/core.hpp>
+cv::Ptr<Detector> createHoughDetector();
+//Other detectors
 
-class Detector{
-public:
-    Detector(){};
-    virtual int count(cv::Mat &image) = 0;
-    virtual void draw() = 0;
-};
+cv::Ptr<Detector> createDetector(const std::string &impl_name)
+{
+    if (impl_name == "Hough")
+        return createHoughDetector();
+    return 0;
+}
