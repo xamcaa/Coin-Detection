@@ -29,12 +29,18 @@ int main(int argc, char** argv)
   cvtColor( src, src_gray, CV_BGR2GRAY );
 
   /// Reduce the noise so we avoid false circle detection
-  GaussianBlur( src_gray, src_gray, Size(9, 9), 2, 2 );
+  GaussianBlur( src_gray, src_gray, Size(9, 9), 1.5 );
 
   vector<Vec3f> circles;
 
   /// Apply the Hough Transform to find the circles
-  HoughCircles( src_gray, circles, CV_HOUGH_GRADIENT, 1, src_gray.rows/8, 200, 100, 0, 0 );
+  HoughCircles( 
+      src_gray, // image in gray
+      circles, // storage
+      CV_HOUGH_GRADIENT, // method - ?
+      1, // depths
+      src_gray.rows // minimal distance between objects
+      );
 
   /// Draw the circles detected
   for( size_t i = 0; i < circles.size(); i++ )
@@ -46,9 +52,12 @@ int main(int argc, char** argv)
       // circle outline
       circle( src, center, radius, Scalar(0,0,255), 3, 8, 0 );
    }
-
+    
+    std::cout<<"number of coins:\t"<<circles.size()<<std::endl;
+    Canny( src_gray, src_gray, 0, 50 );
   /// Show your results
   imshow( "Hough Circle Transform Demo", src );
+  imshow( "Gray scale", src_gray ); 
 
   waitKey(0);
   return 0;
