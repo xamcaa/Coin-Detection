@@ -8,8 +8,7 @@ using namespace  cv;
 
 static const char* keys =
 {
-    "{ |  image   |         |  Source image }"
-    "{ |  method  |  Hough  |  A method to work with }"
+    "{ | image | | Source image }"
 };
 
 /** @function main */
@@ -18,8 +17,6 @@ int main(int argc, char** argv)
     cv::CommandLineParser parser( argc, argv, keys );
     // Parse and validate input parameters
     std::string image_file = parser.get<std::string>( "image" );
-    std::string method = parser.get<std::string>( "method" );
-
     Mat src, src_gray;
     
     /// Read the image
@@ -31,26 +28,13 @@ int main(int argc, char** argv)
   /// Convert it to gray
   cvtColor( src, src_gray, CV_BGR2GRAY );
 
-  /// Increase contrast
-  //equalizeHist(src_gray, src_gray); 
-  //src_gray = src_gray * 2 + 20;
-  //imshow( " ", src_gray );
-
-
-
   /// Reduce the noise so we avoid false circle detection
-  GaussianBlur( src_gray, src_gray, Size(9, 9), 2, 2);
+  GaussianBlur( src_gray, src_gray, Size(9, 9), 2, 2 );
 
   vector<Vec3f> circles;
 
   /// Apply the Hough Transform to find the circles
-  HoughCircles( 
-      src_gray, // image in gray
-      circles, // storage
-      CV_HOUGH_GRADIENT, // method - ?
-      1, // depths
-      src_gray.rows // minimal distance between objects
-      );
+  HoughCircles( src_gray, circles, CV_HOUGH_GRADIENT, 1, src_gray.rows/8, 200, 100, 0, 0 );
 
   /// Draw the circles detected
   for( size_t i = 0; i < circles.size(); i++ )
@@ -62,12 +46,9 @@ int main(int argc, char** argv)
       // circle outline
       circle( src, center, radius, Scalar(0,0,255), 3, 8, 0 );
    }
-    
-    std::cout<<"number of coins:\t"<<circles.size()<<std::endl;
-    Canny( src_gray, src_gray, 0, 50 );
+
   /// Show your results
   imshow( "Hough Circle Transform Demo", src );
-  imshow( "Gray scale", src_gray ); 
 
   waitKey(0);
   return 0;
