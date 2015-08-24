@@ -32,7 +32,7 @@ int main(int argc, char** argv)
   cvtColor( src, src_gray, CV_BGR2GRAY );
 
   /// Reduce the noise so we avoid false circle detection
-  GaussianBlur( src_gray, src_gray, Size(9, 9), 1.5 );
+  GaussianBlur( src_gray, src_gray, Size(9, 9), 2, 2);
 
   vector<Vec3f> circles;
 
