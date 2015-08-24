@@ -7,7 +7,7 @@ set(LIBRARY_DEPS ${OpenCV_LIBS})
 
 file(GLOB srcs "*.cpp")
 file(GLOB hdrs "*.hpp")
-add_executable(main ${srcs})
+add_executable(main ${srcs} ${hdrs})
 target_link_libraries(main ${LIBRARY_DEPS})
 
 # INCLUDE
