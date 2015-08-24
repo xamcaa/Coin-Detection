@@ -4,9 +4,9 @@ using namespace cv;
 
 class Hough : public Detector {
 public:
-    Hough(){};
+    Hough();
     
-    bool init(Mat &src)
+    void init( Mat &src )
     {
         image = src;
     }
@@ -50,3 +50,8 @@ private:
     vector<Vec3f> circles;
     Mat image;
 };
+
+cv::Ptr<Detector> createHoughDetector() 
+{
+    return cv::Ptr<Detector>(new Hough());
+}

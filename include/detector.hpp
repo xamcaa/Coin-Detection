@@ -10,7 +10,7 @@ public:
     Detector(){};
     virtual int count() = 0;
     virtual void draw() = 0;
-    virtual bool init(cv::Mat &src) = 0;
+    virtual void init(cv::Mat &src) = 0;
 };
 
 cv::Ptr<Detector> createDetector ( const std::string &impl_name );
