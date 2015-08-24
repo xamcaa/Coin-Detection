@@ -8,7 +8,8 @@ using namespace  cv;
 
 static const char* keys =
 {
-    "{ | image | | Source image }"
+    "{ |  image   |         |  Source image }"
+    "{ |  method  |  Hough  |  A method to work with }"
 };
 
 /** @function main */
@@ -17,6 +18,8 @@ int main(int argc, char** argv)
     cv::CommandLineParser parser( argc, argv, keys );
     // Parse and validate input parameters
     std::string image_file = parser.get<std::string>( "image" );
+    std::string method = parser.get<std::string>( "method" );
+
     Mat src, src_gray;
     
     /// Read the image
