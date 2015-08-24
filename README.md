@@ -1,4 +1,4 @@
-# Coin-Detection
+# Coin-Detection Team
 
 # Техническое задание
 ### Подсчет объектов
