@@ -6,7 +6,7 @@ find_package(OpenCV REQUIRED)
 set(LIBRARY_DEPS ${OpenCV_LIBS})
 
 # INCLUDE
-include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include")
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include" "${CMAKE_CURRENT_SOURCE_DIR}/testdata")
 
 file(GLOB srcs "*.cpp")
 file(GLOB hdrs "*.hpp")
