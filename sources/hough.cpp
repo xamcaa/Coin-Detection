@@ -4,7 +4,7 @@ using namespace cv;
 
 class Hough : public Detector {
 public:
-    Hough();
+    Hough() {};
     
     void init( Mat &src )
     {
@@ -51,7 +51,7 @@ private:
     Mat image;
 };
 
-cv::Ptr<Detector> createHoughDetector() 
+cv::Ptr<Detector> createDetectorHough() 
 {
     return cv::Ptr<Detector>(new Hough());
 }

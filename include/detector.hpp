@@ -13,4 +13,4 @@ public:
     virtual void init(cv::Mat &src) = 0;
 };
 
-cv::Ptr<Detector> createDetector ( const std::string &impl_name );
+cv::Ptr<Detector> detectorCreation ( const std::string &impl_name );

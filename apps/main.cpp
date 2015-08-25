@@ -24,8 +24,7 @@ int main(int argc, char** argv)
     src = imread( image_file );
     CV_Assert( !src.empty() );
 
-    cv::Ptr<Detector> detector(createDetector(method_name));
-    //Detector* detector = createDetector(method_name);
+    Ptr<Detector> detector(detectorCreation(method_name));
     detector->init(src);
     detector->count();
     detector->draw();
