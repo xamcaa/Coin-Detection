@@ -1,11 +1,11 @@
 #include "detector.hpp"
 
-cv::Ptr<Detector> createHoughDetector() {return cv::Ptr<Detector>();}
+cv::Ptr<Detector> createDetectorHough();
 //Other detectors
 
-cv::Ptr<Detector> createDetector(const std::string &impl_name)
+cv::Ptr<Detector> detectorCreation(const std::string &impl_name)
 {
     if (impl_name == "Hough")
-        return createHoughDetector();
+        return createDetectorHough();
     return 0;
 }
