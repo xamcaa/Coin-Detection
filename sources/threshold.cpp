@@ -20,7 +20,24 @@ public:
 
         Mat gray_image;
         imshow( " ", image );
-        cvtColor( image, gray_image, CV_BGR2GRAY );
+        int size_height = image.size().height;
+        int size_width = image.size().width;
+        if (size_height > size_width )
+        {
+            cv::transpose(image, image);
+            cv::flip(image, image, 1);
+            size_height = image.size().height;
+            size_width = image.size().width;
+        }
+
+        if (size_width > 640 )
+        {
+            Mat scaled_image;
+            resize( image, scaled_image, Size(640,480) );
+            cvtColor( scaled_image, gray_image, CV_BGR2GRAY );
+        }
+        else
+            cvtColor( image, gray_image, CV_BGR2GRAY );
         /// Reduce the noise so we avoid false circle detection
         GaussianBlur( gray_image, gray_image, Size(9, 9), 2, 2 );
         Mat kernel;
@@ -44,14 +61,13 @@ public:
         /// Find the rotated rectangles and ellipses for each contour
         vector<RotatedRect> minRect( contours.size() );
         vector<RotatedRect> minEllipse( contours.size() );
-        int sizeofimage = image.size().height;
         for( int i = 0; i < contours.size(); i++ )
         {     
             minRect[i] = minAreaRect( Mat(contours[i]));
             if ( contours[i].size() > 5 )
             { 
                 double area = cv::contourArea( contours[i]);
-                if ( ( area < sizeofimage * sizeofimage / 4 ) && ( area > 300 ) )
+                if ( ( area < 57600 ) && ( area > 300 ) )
                 {
                       minEllipse[i] = fitEllipse( Mat(contours[i]) );
                       counter++ ;
